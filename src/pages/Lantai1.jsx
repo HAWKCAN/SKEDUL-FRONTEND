@@ -1,10 +1,10 @@
-import Header from "../components/Header.jsx";
+
 import KotakBorder from "../components/KotakBorder.jsx";
 import ToggleButton from "../components/ToggleButton.jsx";
-function Lantai3() {
+function Lantai1() {
   return (
     <body className="bg-[#EDF2FB] min-h-screen max-h-dvh">
-      <Header />
+
 
       <div className="grid grid-cols-[1fr_4fr]">
         <div className="w-auto">
@@ -46,7 +46,7 @@ function Lantai3() {
               <p>PINTU 3</p>
             </div>
             <div className="flex justify-center text-[40px] text-[#00000042] items-center text-center">
-              LANTAI 3
+              LANTAI 1
             </div>
             <div className="flex  flex-row  justify-end text-[20px] items-center text-center text-[#00000042]  content-center">
               <p>PINTU 2</p>
@@ -69,4 +69,4 @@ function Lantai3() {
   );
 }
 
-export default Lantai3;
+export default Lantai1;
