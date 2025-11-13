@@ -1,6 +1,7 @@
+import ToggleButton from "../components/ToggleButton.jsx";
 export default function LeftSide() {
   return (
-    <div className="border flex flex-col items-center text-center gap-2 rounded-md bg-[#ffffff] h-auto m-5 pb-5 pt-5">
+    <div className="border flex flex-col items-center  text-center gap-2 rounded-md bg-[#ffffff] h-auto m-5 pb-5 pt-5">
       <label className="m-2 text-[20px] w-full font-bold" htmlFor="">
         Cari Ruangan
       </label>

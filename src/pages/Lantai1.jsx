@@ -1,33 +1,14 @@
+import { Header, KotakBorder } from "../components";
 
-import KotakBorder from "../components/KotakBorder.jsx";
-import ToggleButton from "../components/ToggleButton.jsx";
+import LeftSide from "../components/LeftSide.jsx";
 function Lantai1() {
   return (
     <body className="bg-[#EDF2FB] min-h-screen max-h-dvh">
-
+      <Header />
 
       <div className="grid grid-cols-[1fr_4fr]">
-        <div className="w-auto">
-          <div className="border flex flex-col items-center text-center gap-2 rounded-md bg-[#ffffff] h-auto m-5 pb-5 pt-5">
-            <label className="m-2 text-[20px] w-full font-bold" htmlFor="">
-              Cari Ruangan
-            </label>
-            <input
-              className="border-2 border-solid m-2 p-2 w-[80%] rounded-md"
-              type="text"
-              name="cari"
-              id="cari"
-              placeholder="Masukkan Nama Ruangan"
-            />
-            <div className="flex flex-row justify-between font-bold text-[20px] items-center m-2 ">
-              <p>Hanya yang tersedia</p>
-              <ToggleButton />
-            </div>
-            <button className="border p-2 m-2 w-[80%] font-bold text-[#ffffff] bg-[#414dea]">
-              {" "}
-              Reset
-            </button>
-          </div>
+        <div>
+          <LeftSide />
         </div>
 
         <div className="  grid grid-rows-[1fr_1fr_3fr] border-l rounded-md h-[calc(100vh-100px)] ">

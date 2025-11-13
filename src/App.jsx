@@ -1,10 +1,10 @@
-import Header from "./components/Header.jsx";
-import Lantai1 from "./pages/Lantai1.jsx";
+
+import Dashboard from "./pages/Dashboard.jsx";
 function App() {
   return (
     <body className="bg-[#EDF2FB] min-h-screen max-h-dvh">
-      <Header />
-      <Lantai1 />
+  
+      <Dashboard/>
 
     
     </body>
