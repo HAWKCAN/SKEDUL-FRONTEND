@@ -6,39 +6,25 @@ export default function Login() {
       <title>Login Page</title>
       <div className="grid grid-rows-[1fr_1fr_1fr_2fr] relative lg:flex lg:flex-col lg:text-[20px] text-[10px] gap-2  p-10 text-[#000000] rounded-[10px] bg-[#e5e5e594]  lg:h-[50%] lg:w-[30%] w-[80%] justify-center lg:justify-around  items-center ">
         <div className="absolute left-8 top-5">
-          <Link to='/'> 
+          <Link to='/'>
             <i class="fa-solid fa-arrow-left"></i>
           </Link>
         </div>
-        <p className="text-[20px] ">LOGIN </p>
-        <div className="gap-2 flex  lg:text-[20px] text-[15px] lg:flex-row items-center flex-col">
-          <label className="text-start " htmlFor="">
-            Username :
-          </label>
-          <input
-            className="border-solid border-2 p-2 "
-            placeholder="Username"
-            type="text"
-            name="username"
-            id="username"
-          />
-        </div>
-        <div className="gap-2 flex  lg:text-[20px] text-[15px] lg:flex-row items-center  flex-col">
-          <label className="text-start" htmlFor="">
-            Password :
-          </label>
-          <input
-            className="border-solid border-2  p-2"
-            placeholder="*********"
-            type="password"
-            name="password"
-            id="password"
-          />
-        </div>
+        <p className="text-[20px] ">LOGIN</p>
+        <table>
+          <tr>
+            <td><label htmlFor="" className="text-start">Username</label></td>
+            <td><input type="text" name="username" id="username" placeholder="Username" className="border-solid border-[1.5px] rounded-md p-2 m-2" /></td>
+          </tr>
+          <tr>
+            <td><label htmlFor="" className="text-start">Password</label></td>
+            <td><input type="password" name="password" id="password" placeholder="Password" className="border-solid border-[1.5px] rounded-md p-2 m-2" /></td>
+          </tr>
+        </table>
         <div className="flex flex-row  justify-center items-center lg:gap-30 gap-5">
           <LoginButton type='submit' className='hover:bg-[]' />
-        
-          <button className="lg:text-[20px] ">forgot Password?</button>
+
+          <button className="lg:text-[20px] ">Forgot Password?</button>
         </div>
       </div>
     </div>

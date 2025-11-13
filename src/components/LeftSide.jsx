@@ -6,7 +6,7 @@ export default function LeftSide() {
         Cari Ruangan
       </label>
       <input
-        className="border-2 border-solid m-2 p-2 w-[80%] rounded-md"
+        className="border-1 border-solid m-2 p-2 w-[80%] rounded-md"
         type="text"
         name="cari"
         id="cari"
