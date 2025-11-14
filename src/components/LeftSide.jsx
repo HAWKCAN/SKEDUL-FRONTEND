@@ -1,4 +1,4 @@
-import ToggleButton from "../components/ToggleButton.jsx";
+import ToggleButton from "./button/ToggleButton.jsx";
 export default function LeftSide() {
   return (
     <div className="border flex flex-col items-center  text-center gap-2 rounded-md bg-[#ffffff] h-auto m-5 pb-5 pt-5">
