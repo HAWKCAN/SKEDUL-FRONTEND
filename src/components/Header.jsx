@@ -1,4 +1,4 @@
-import LoginButton from "./LoginButton.jsx";
+import LoginButtonLink from "./button/LoginButtonLink.jsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export default function Header() {
@@ -27,7 +27,7 @@ export default function Header() {
             </button>
           </Link>
         </div>
-        <LoginButton />
+        <LoginButtonLink />
       </header>
 
       <header className="flex flex-row lg:hidden max-h-[100px] p-[30px] justify-between align-center text-center">
@@ -59,7 +59,7 @@ export default function Header() {
                 Lantai 3
               </button>
             </Link>
-            <LoginButton />
+            <LoginButtonLink />
           </div>
         )}
       </header>

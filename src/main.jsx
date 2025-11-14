@@ -5,9 +5,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"; // ✅ import r
 import "./index.css";
 import App from "./App.jsx";
 import Login from "./pages/Login.jsx";
-import Lantai2 from "./pages/Lantai2.jsx";
-import Lantai3 from "./pages/Lantai3.jsx";
-import Lantai1 from "./pages/Lantai1.jsx";
+import Lantai2 from "./pages/Lantai/Lantai2.jsx";
+import Lantai3 from "./pages/Lantai/Lantai3.jsx";
+import Lantai1 from "./pages/Lantai/Lantai1.jsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
