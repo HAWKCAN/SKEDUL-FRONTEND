@@ -18,7 +18,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", role);
 
-      if (role === "admin") navigate("/");
+      if (role === "admin") navigate("/DashboardAdmin");
       else if (role === "dosen") navigate("/dosen/jadwal");
       else navigate("/mahasiswa/kelas");
     } catch (err) {

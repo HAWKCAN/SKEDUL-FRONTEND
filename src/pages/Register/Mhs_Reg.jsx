@@ -11,7 +11,7 @@ export default function Mhs_Reg() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register({ email, password, role });
+      await register({ email, password, role },true);
       alert("User berhasil dibuat!");
     } catch (err) {
       alert("Gagal membuat user!");
@@ -26,7 +26,7 @@ export default function Mhs_Reg() {
 
         <div className="grid grid-rows-[1fr_1fr_1fr_2fr] relative lg:flex lg:flex-col lg:text-[20px] text-[10px] gap-2 p-10 text-[#000000] rounded-[10px] bg-[#e5e5e594] lg:h-[55%] lg:w-[35%] w-[80%] justify-center lg:justify-around items-center">
           <div className="absolute left-8 top-5">
-            <Link to="/admin/dashboard">
+            <Link to="/">
               <i className="fa-solid fa-arrow-left"></i>
             </Link>
           </div>
