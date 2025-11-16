@@ -1,4 +1,4 @@
-import LoginButtonLink from "./button/LoginButtonLink.jsx";
+import ButtonType from "./button/ButtonType.jsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export default function Header() {
@@ -11,23 +11,11 @@ export default function Header() {
         </Link>
 
         <div className="flex flex-row gap-2  p-[5px] justify-center ">
-          <Link to="/Lantai1">
-            <button className="p-[5px] bg-[#ABC4FF] rounded-md hover:bg-[#5e74f6] w-30 text-center h-10">
-              Lantai 1
-            </button>
-          </Link>
-          <Link to="/Lantai2">
-            <button className="p-[5px] bg-[#ABC4FF] rounded-md hover:bg-[#5e74f6] w-30 text-center h-10">
-              Lantai 2
-            </button>
-          </Link>
-          <Link to="/Lantai3">
-            <button className="p-[5px] bg-[#ABC4FF] rounded-md hover:bg-[#5e74f6] w-30 text-center h-10">
-              Lantai 3
-            </button>
-          </Link>
+          <ButtonType to="/lantai1" Name="Lantai 1" />
+          <ButtonType to="/lantai2" Name="Lantai 2" />
+          <ButtonType to="/lantai3" Name="Lantai 3" />
         </div>
-        <LoginButtonLink />
+        <ButtonType to="/login" Name="Login" />
       </header>
 
       <header className="flex flex-row lg:hidden max-h-[100px] p-[30px] justify-between align-center text-center">
@@ -59,7 +47,7 @@ export default function Header() {
                 Lantai 3
               </button>
             </Link>
-            <LoginButtonLink />
+            <ButtonType to="/login" Name="Login" />
           </div>
         )}
       </header>

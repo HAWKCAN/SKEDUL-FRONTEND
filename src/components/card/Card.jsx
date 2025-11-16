@@ -1,4 +1,4 @@
-import{ Tersedia,Penuh,DetailButton,ReservasiButton} from "../../components"
+import{ Tersedia,Penuh,DetailButton,ButtonType} from "../../components"
 export default function Card() {
   return (
     <div className="border rounded-md h-[300px] w-auto p-5 grid grid-rows-[1fr_1fr_1fr]">
@@ -16,7 +16,7 @@ export default function Card() {
       </div>
       <div className="flex flex-row gap-5 items-end">
         <DetailButton />
-        <ReservasiButton />
+        <ButtonType type='submit' Name='Reservasi' />
       </div>
     </div>
   );
