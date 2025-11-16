@@ -5,7 +5,7 @@ export default function ToggleButton() {
     <div>
       <div
         className={`border w-15 h-6 flex items-center rounded-full m-2 transition ${
-          aktif ? "bg-[#ABC4FF]" : "bg-[#fffffff]"
+          aktif ? "bg-[#7d99fc]" : "bg-[#fffffff]"
         }
         `}
         onClick={() => setAktif(!aktif)}

@@ -5,7 +5,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <header className="lg:flex flex-row hidden max-h-[100px] p-10 lg:pl-20 border-b lg:pr-20  bg-[#ffffff]  justify-between items-center  text-center">
+      <header className="shadow-md lg:flex flex-row hidden max-h-[100px] p-10 lg:pl-20 border-b border-[#7d99fc] lg:pr-20  bg-[#EDF4FF]  justify-between items-center  text-center">
         <Link to="/">
           <a className="content-center font-bold text-[30px]">SKEDUL</a>{" "}
         </Link>
