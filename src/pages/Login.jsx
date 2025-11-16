@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import LoginButton from "../components/button/LoginButton";
+import ButtonType from "../components/button/ButtonType.jsx";
 import { login } from "../api/auth.js";
 
 export default function Login() {
@@ -82,7 +82,7 @@ export default function Login() {
           </table>
 
           <div className="flex flex-row justify-center items-center lg:gap-30 gap-5">
-            <LoginButton type="submit" />
+            <ButtonType type="submit" Name="Login" />
 
             <button type="button" className="lg:text-[20px]">
               Forgot Password?

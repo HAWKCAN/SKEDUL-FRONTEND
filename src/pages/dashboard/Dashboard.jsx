@@ -1,14 +1,29 @@
 
 
-import { Header, LeftSide, Lantai } from "../../components";
+import { Header, LeftSide, Lantai,ButtonType } from "../../components";
 
 export default function Dashboard() {
+
+
+  
   return (
     <div>
       <Header />
       <div className="grid grid-cols-[1fr_4fr]">
         <div>
           <LeftSide />
+          <div className="border h-[120px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+            <h1 className="font-bold text-[20px] text-center">
+              Registrasi Mahasiswa
+            </h1>
+            <ButtonType type="button" Name="Daftar" to="/Mhs_Reg"/>
+          </div>
+          <div className="border h-[120px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+            <h1 className="font-bold text-[20px] text-center">
+              Registrasi Dosen
+            </h1>
+            <ButtonType type="button" Name="Daftar" />
+          </div>
         </div>
         {/* <Lantai classname="font-light" /> */}
 
@@ -32,12 +47,11 @@ export default function Dashboard() {
             </table>
           </div>
 
-
           <h1 className="text-[20px] font-bold mt-5">Daftar Pending</h1>
           <div className="bg-[#ffffff] border-solid rounded-md border-1 mr-5 pl-2">
             {/* <div className="absolute w-[160px] top-[-50px] border-l border-t border-r h-[50px] bg-[#ffffff] flex justify-center  left-[-1px]">   <h1 className=" text-[18px]  font-bold mt-1">Daftar Pending</h1></div> */}
             <table className="w-[100%] text-center mt-2 mb-2">
-              <tr >
+              <tr>
                 <th>No</th>
                 <th>Nama</th>
                 <th>Tanggal Peminjaman</th>
@@ -66,14 +80,11 @@ export default function Dashboard() {
             </table>
           </div>
 
-
-
           <div className="bg-[#ffffff] border-solid border-1 rounded-md mt-5 mr-5">
             <h1 className="text-[18px] font-bold ml-2 mt-2">
               Histori Peminjaman
             </h1>
             <table className="w-[100%] text-center mb-2">
-
               <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -111,7 +122,7 @@ export default function Dashboard() {
         </div> */}
 
         {/* Ini Dashboard Buat Dosen & Mahasiswa */}
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
