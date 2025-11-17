@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { ButtonType } from "../../components";
 import { register } from "../../api/auth.js";
@@ -14,6 +14,8 @@ export default function Mhs_Reg() {
     try {
       await register({ name, email, password, role }, true);
       alert("User berhasil dibuat!");
+      Navigate('/login');
+
     } catch (err) {
       alert("Gagal membuat user!");
       console.error(err);

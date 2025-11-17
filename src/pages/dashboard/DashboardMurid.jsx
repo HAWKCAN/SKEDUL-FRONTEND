@@ -1,16 +1,52 @@
-import {
-  Header,
-  LeftSide,
-  Lantai,
-  Card,
-} from "../../components";
+import { Header, LeftSide, Lantai, Card,ButtonType } from "../../components";
+import { logout } from "../../api/auth";
+import { useState, useEffect } from "react";
 export default function Dashboard() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [name, setNama] = useState("");
+  
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      const storedName = localStorage.getItem("name");
+      setIsLoggedIn(!!token);
+      if (storedName) setNama(storedName);
+    }, []);
+  function handleLogout() {
+    const token = localStorage.getItem("token");
+
+    logout(token)
+      .then(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("name");
+        window.location.href = "/login";
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Gagal logout!");
+      });
+  }
   return (
     <div className="text-[#191c4d] bg-[#FFFFFF]">
-      <Header to="/" />
+      <div>
+        <Header className="relative" to="/" />
+        {isLoggedIn ? (
+          <div className="flex absolute flex-row justify-between top-8 right-50 items-center">
+            <h1 className="text-[20px]  mr-10 font-medium">
+              Halo, {name || "kamu"}
+            </h1>
+          </div>
+        ) : (""
+        )}
+      </div>
+
       <div className="grid grid-cols-[1fr_4fr] ">
         <div>
           <LeftSide />
+          <div className="border h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+            <h1 className="font-bold text-[20px] text-center">LOGOUT</h1>
+            <ButtonType type="button" Name="Logout" onClick={handleLogout} />
+          </div>
         </div>
 
         <div className=" h-[calc(100dvh-100px)] grid grid-rows-[1fr_5fr] pl-2 pt-5 pr-5 ">
