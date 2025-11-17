@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import '../index.css';
 import { useState } from "react";
 import ButtonType from "../components/button/ButtonType.jsx";
 import { login } from "../api/auth.js";
