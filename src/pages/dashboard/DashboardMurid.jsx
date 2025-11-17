@@ -7,7 +7,7 @@ import {
 export default function Dashboard() {
   return (
     <div className="text-[#191c4d] bg-[#FFFFFF]">
-      <Header />
+      <Header to="/" />
       <div className="grid grid-cols-[1fr_4fr] ">
         <div>
           <LeftSide />

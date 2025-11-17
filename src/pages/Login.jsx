@@ -14,13 +14,15 @@ export default function Login() {
     try {
       const res = await login(email, password);
       const role = res.data.user.role;
+      const user = res.data.user;
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", role);
+      localStorage.setItem("name", user.name);
 
       if (role === "admin") navigate("/DashboardAdmin");
       else if (role === "dosen") navigate("/dosen/jadwal");
-      else navigate("/mahasiswa/kelas");
+      else navigate("/");
     } catch (err) {
       alert("Email atau password salah!");
       console.log(err);

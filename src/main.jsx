@@ -10,6 +10,7 @@ import Lantai2 from "./pages/Lantai/Lantai2.jsx";
 import Lantai3 from "./pages/Lantai/Lantai3.jsx";
 import Lantai1 from "./pages/Lantai/Lantai1.jsx";
 import Mhs_Reg from "./pages/Register/Mhs_Reg.jsx";
+import ProtectedRoute from "./components/ProtectedRoutes.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -21,7 +22,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/Lantai2" element={<Lantai2 />} />
         <Route path="/Lantai3" element={<Lantai3 />} />
         <Route path="/Mhs_Reg" element={<Mhs_Reg />} />
-        <Route path="/DashboardAdmin" element={<DashboardAdmin />} />
+        <Route
+          path="/DashboardAdmin"
+          element={
+            <ProtectedRoute>
+              <DashboardAdmin />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

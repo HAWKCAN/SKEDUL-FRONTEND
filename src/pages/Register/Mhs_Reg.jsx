@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import {ButtonType } from "../../components";
+import { ButtonType } from "../../components";
 import { register } from "../../api/auth.js";
 
 export default function Mhs_Reg() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("mahasiswa");
@@ -11,7 +12,7 @@ export default function Mhs_Reg() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register({ email, password, role },true);
+      await register({ name, email, password, role }, true);
       alert("User berhasil dibuat!");
     } catch (err) {
       alert("Gagal membuat user!");
@@ -35,6 +36,23 @@ export default function Mhs_Reg() {
 
           <table>
             <tbody>
+              <tr>
+                <td>
+                  <label className="text-start">Nama</label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Nama Lengkap"
+                    className="border-solid border-[1.5px] rounded-md p-2 m-2 w-[200px]"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </td>
+              </tr>
+
               <tr>
                 <td>
                   <label className="text-start">Email</label>
