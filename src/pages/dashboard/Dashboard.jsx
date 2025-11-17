@@ -1,4 +1,4 @@
-import { Header, LeftSide, Lantai, ButtonType } from "../../components";
+import { Header, LeftSide, ButtonType } from "../../components";
 import { logout } from "../../api/auth";
 import { useState, useEffect } from "react";
 

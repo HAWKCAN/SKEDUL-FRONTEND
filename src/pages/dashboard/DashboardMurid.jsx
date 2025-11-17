@@ -1,4 +1,4 @@
-import { Header, LeftSide, Lantai, Card,ButtonType } from "../../components";
+import { Header, LeftSide, Card,ButtonType } from "../../components";
 import { logout } from "../../api/auth";
 import { useState, useEffect } from "react";
 export default function Dashboard() {
