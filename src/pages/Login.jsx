@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import '../index.css';
 import { useState } from "react";
 import ButtonType from "../components/button/ButtonType.jsx";
 import { login } from "../api/auth.js";
@@ -30,7 +29,7 @@ export default function Login() {
 
   return (
     <form onSubmit={handleLogin}>
-      <div className="flex bg-login bg-cover bg-center bg-no-repeat flex-col h-dvh lg:w-dvw justify-center text-center items-center">
+      <div className="flex bg-[url(https://res.cloudinary.com/de0hipzt3/image/upload/v1763341143/background_login2_uiyh5h.jpg)] bg-cover bg-center bg-no-repeat flex-col h-dvh lg:w-dvw justify-center text-center items-center">
         <title>Login Page</title>
 
         <div className="grid grid-rows-[1fr_1fr_1fr_2fr] relative lg:flex lg:flex-col lg:text-[20px] text-[10px] gap-2 p-10 text-[#000000] rounded-[10px] bg-[#e5e5e594] lg:h-[50%] lg:w-[30%] w-[80%] justify-center lg:justify-around items-center">
