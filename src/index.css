@@ -5,5 +5,12 @@
 html, body {
   overflow-x: hidden;
 }
+.bg-login {
+  background-image: url('https://res.cloudinary.com/de0hipzt3/image/upload/v1763341143/background_login2_uiyh5h.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 }
