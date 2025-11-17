@@ -51,22 +51,7 @@ export default function Header({ to }) {
 
         {open && (
           <div className="flex absolute flex-col gap-[5px] p-[10px] right-5 top-[80px] border rounded-md bg-[#FDFDFD] shadow-md">
-            <Link to="/lantai1">
-              <button className="border p-[5px] w-[80px] h-[35px] rounded-md">
-                Lantai 1
-              </button>
-            </Link>
-            <Link to="/lantai2">
-              <button className="border p-[5px] w-[80px] h-[35px] rounded-md">
-                Lantai 2
-              </button>
-            </Link>
-            <Link to="/lantai3">
-              <button className="border p-[5px] w-[80px] h-[35px] rounded-md">
-                Lantai 3
-              </button>
-            </Link>
-
+      
             {isLoggedIn ? (
               <button
                 onClick={handleProfileClick}

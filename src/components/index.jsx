@@ -1,7 +1,7 @@
 export { default as Header } from "./Header.jsx";
 export { default as ButtonType } from "./button/ButtonType.jsx";
 export { default as KotakBorder } from "./KotakBorder.jsx";
-export { default as Lantai } from "./Lantai.jsx";
+
 export { default as LeftSide } from "./LeftSide.jsx";
 export { default as ToggleButton } from "./button/ToggleButton.jsx";
 export { default as Tersedia } from "./Status/Tersedia.jsx";
