@@ -25,12 +25,6 @@ export default function Header({ to }) {
           </span>
         </Link>
 
-        <div className="flex flex-row gap-2 p-[5px] justify-center">
-          <ButtonType to="/lantai1" Name="Lantai 1" />
-          <ButtonType to="/lantai2" Name="Lantai 2" />
-          <ButtonType to="/lantai3" Name="Lantai 3" />
-        </div>
-
         {/* 🔹 Tampilkan tombol berbeda tergantung status login */}
         {isLoggedIn ? (
           <button

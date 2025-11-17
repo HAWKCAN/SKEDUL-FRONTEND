@@ -24,7 +24,7 @@ export default function Mhs_Reg() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex bg-[url(public/images/background_login2.jpg)] bg-cover bg-center bg-no-repeat flex-col h-dvh lg:w-dvw justify-center text-center items-center">
+      <div className="flex bg-login bg-cover bg-center bg-no-repeat flex-col h-dvh lg:w-dvw justify-center text-center items-center">
         <title>Register Page</title>
 
         <div className="grid grid-rows-[1fr_1fr_1fr_2fr] relative lg:flex lg:flex-col lg:text-[20px] text-[10px] gap-2 p-10 text-[#000000] rounded-[10px] bg-[#e5e5e594] lg:h-[55%] lg:w-[35%] w-[80%] justify-center lg:justify-around items-center">
