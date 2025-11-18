@@ -26,6 +26,8 @@ export default function Dashboard() {
         alert("Gagal logout!");
       });
   }
+
+  
   return (
     <div className="text-[#191c4d] bg-[#FFFFFF]">
       <div>
@@ -66,7 +68,8 @@ export default function Dashboard() {
               <p>Peminjaman Ditolak</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 grid-rows-3 gap-5 mt-10 mb-10">
+
+          <div id="card" className="grid grid-cols-3 grid-rows-3 gap-5 mt-10 mb-10">
             <Card />
             <Card />
             <Card />
