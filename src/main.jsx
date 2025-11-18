@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Login from "./pages/Login.jsx";
 import DashboardAdmin from "./pages/dashboard/Dashboard.jsx";
+import Reservation from "./pages/Reservation.jsx";
 
 import Mhs_Reg from "./pages/Register/Mhs_Reg.jsx";
 import ProtectedRoute from "./components/ProtectedRoutes.jsx";
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
 
+        <Route path="/Reservation" element={<Reservation />} />
         <Route path="/Mhs_Reg" element={<Mhs_Reg />} />
         <Route
           path="/DashboardAdmin"

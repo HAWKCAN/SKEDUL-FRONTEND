@@ -24,7 +24,11 @@ export default function Card({ data }) {
  
       <div className="flex flex-row gap-5 items-end">
         <DetailButton />
+<<<<<<< HEAD
         <ButtonType type="submit" Name="Reservasi" />
+=======
+        <ButtonType type='submit' Name='Reservasi' to="/Reservation"/>
+>>>>>>> 6a982d5c4db5b658ca43368d52eaa715e0e1b506
       </div>
     </div>
   );
