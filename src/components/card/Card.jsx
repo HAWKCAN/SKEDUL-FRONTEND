@@ -16,7 +16,7 @@ export default function Card() {
       </div>
       <div className="flex flex-row gap-5 items-end">
         <DetailButton />
-        <ButtonType type='submit' Name='Reservasi' />
+        <ButtonType type='submit' Name='Reservasi' to="/Reservation"/>
       </div>
     </div>
   );

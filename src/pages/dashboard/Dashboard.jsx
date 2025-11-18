@@ -36,21 +36,21 @@ export default function Dashboard() {
         <div className="flex flex-col "> 
           <LeftSide />
 
-          <div className="border h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+          <div className="border border-[#A2B8FF] rounded-md bg-[#DCE8FF] h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
             <h1 className="font-bold text-[20px] text-center">
               Registrasi Mahasiswa
             </h1>
             <ButtonType type="button" Name="Daftar" to="/Mhs_Reg" />
           </div>
 
-          <div className="border h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+          <div className="border border-[#A2B8FF] rounded-md bg-[#DCE8FF] h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
             <h1 className="font-bold text-[20px] text-center">
               Registrasi Dosen
             </h1>
             <ButtonType type="button" Name="Daftar" />
           </div>
 
-          <div className="border h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+          <div className="border border-[#A2B8FF] rounded-md bg-[#FFFFFF] h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
             <h1 className="font-bold text-[20px] text-center">LOGOUT</h1>
             <ButtonType type="button" Name="Logout" onClick={handleLogout} />
           </div>
@@ -70,23 +70,23 @@ export default function Dashboard() {
           )}
 
           <p className="text-[20px]">Sabtu, 14 November 2025</p>
-          <div className="bg-[#ffffff] h-[12vh] border-solid border-1 rounded-md mt-3 mr-5">
+          <div className="border-[#7d99fc] bg-[#C5D8FF] h-[12vh] border-solid border-1 rounded-md mt-3 mr-5">
             <table className="w-[100%] h-[70%] text-center text-[18px] mt-3">
               <tr>
                 <th>Peminjaman Pending</th>
-                <th className="border-r border-l">Peminjaman Diterima</th>
+                <th className="border-r border-l border-[#7d99fc]">Peminjaman Diterima</th>
                 <th>Peminjaman Ditolak</th>
               </tr>
               <tr>
                 <td>3</td>
-                <td className="border-r border-l">3</td>
+                <td className="border-r border-l border-[#7d99fc]">3</td>
                 <td>3</td>
               </tr>
             </table>
           </div>
 
           <h1 className="text-[20px] font-bold mt-5">Daftar Pending</h1>
-          <div className="bg-[#ffffff] border-solid rounded-md border-1 mr-5 pl-2">
+          <div className="bg-[#F5F8FF] border border-[#a2beff] rounded-md mr-5 pl-2">
             <table className="w-[100%] text-center mt-2 mb-2">
               <tr>
                 <th>No</th>
@@ -116,7 +116,7 @@ export default function Dashboard() {
             </table>
           </div>
 
-          <div className="bg-[#ffffff] border-solid border-1 rounded-md mt-5 mr-5">
+          <div className="bg-[#F5F8FF] border border-[#a2beff] rounded-md mt-5 mr-5">
             <h1 className="text-[18px] font-bold ml-2 mt-2">
               Histori Peminjaman
             </h1>
