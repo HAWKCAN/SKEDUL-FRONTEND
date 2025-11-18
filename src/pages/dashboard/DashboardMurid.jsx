@@ -40,7 +40,7 @@ export default function Dashboard() {
 
   // 🔹 auto refresh setiap 15 detik
   useEffect(() => {
-    const interval = setInterval(loadKelas, 15000);
+    const interval = setInterval(loadKelas, 100);
     return () => clearInterval(interval);
   }, []);
 
