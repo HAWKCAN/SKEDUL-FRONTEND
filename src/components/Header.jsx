@@ -1,6 +1,8 @@
 import ButtonType from "./button/ButtonType.jsx";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import LeftSide from "./LeftSide.jsx";
+import { logout } from "../api/auth";
 
 export default function Header({ to }) {
   const [open, setOpen] = useState(false);
@@ -13,8 +15,18 @@ export default function Header({ to }) {
   }, []);
 
   const handleProfileClick = () => {
-    navigate("/profile"); 
+    navigate("/profile");
   };
+  function handleLogout() {
+    const token = localStorage.getItem("token");
+
+    logout(token)
+      .then(() => {
+        localStorage.clear();
+        window.location.href = "/login";
+      })
+      .catch(() => alert("Gagal logout!"));
+  }
 
   return (
     <div>
@@ -25,7 +37,6 @@ export default function Header({ to }) {
           </span>
         </Link>
 
-        {/* 🔹 Tampilkan tombol berbeda tergantung status login */}
         {isLoggedIn ? (
           <button
             onClick={handleProfileClick}
@@ -39,26 +50,32 @@ export default function Header({ to }) {
         )}
       </header>
 
-
-      <header className="flex flex-row lg:hidden max-h-[100px] p-[30px] justify-between align-center text-center bg-[#EDF4FF] border-b border-[#7d99fc]">
-        <p className="content-center text-[25px] font-bold">SKEDUL</p>
+      <header className="flex flex-row lg:hidden max-h-[50px] p-[10px] pr-[20px] pl-[20px] justify-between align-center content-center text-center bg-[#EDF4FF] border-b border-[#7d99fc]">
+        <p className="content-center  text-[20px] font-bold">SKEDUL</p>
         <button
           onClick={() => setOpen(!open)}
-          className="text-[#14A9FF] text-2xl font-bold"
+          className="text-[#14A9FF] text-[20px] font-bold"
         >
           ☰
         </button>
 
         {open && (
-          <div className="flex absolute flex-col gap-[5px] p-[10px] right-5 top-[80px] border rounded-md bg-[#FDFDFD] shadow-md">
-      
+          <div className="flex absolute flex-col h-[px] justify-center content-center items-center  gap-[10px] p-[10px] right-5 top-[80px] border rounded-md bg-[#FDFDFD] shadow-md">
+            <LeftSide />
             {isLoggedIn ? (
-              <button
-                onClick={handleProfileClick}
-                className="border p-[5px] w-[80px] h-[35px] rounded-full bg-[#ABC4FF] hover:bg-[#7d99fc] text-white"
-              >
-                👤 Profil
-              </button>
+              <div className="h-[40px] w-auto  flex flex-row justify-center items-center gap-5">
+                <ButtonType
+                  type="button"
+                  Name="Logout"
+                  onClick={handleLogout}
+                />
+
+                < ButtonType
+                  Name="  Profil"
+                  onClick={handleProfileClick}
+                  className="border p-[5px]  rounded-md bg-[#ABC4FF] hover:bg-[#7d99fc] text-white"
+                />
+              </div>
             ) : (
               <ButtonType to="/login" Name="Login" />
             )}
