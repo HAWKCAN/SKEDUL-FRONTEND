@@ -22,7 +22,7 @@ export default function Login() {
 
       if (role === "admin") navigate("/DashboardAdmin");
       else if (role === "dosen") navigate("/dosen/jadwal");
-      else navigate("/");
+      else navigate("/DashboardMurid");
     } catch (err) {
       alert("Email atau password salah!");
       console.log(err);
@@ -35,11 +35,6 @@ export default function Login() {
         <title>Login Page</title>
 
         <div className="grid grid-rows-[1fr_1fr_1fr_2fr] relative lg:flex lg:flex-col lg:text-[20px] text-[10px] gap-2 p-10 text-[#000000] rounded-[10px] bg-[#e5e5e594] lg:h-[50%] lg:w-[30%] w-[80%] justify-center lg:justify-around items-center">
-          <div className="absolute left-8 top-5">
-            <Link to="/">
-              <i className="fa-solid fa-arrow-left"></i>
-            </Link>
-          </div>
 
           <p className="text-[30px] font-bold">LOGIN</p>
 

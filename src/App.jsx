@@ -1,9 +1,10 @@
-import Dashboard from "./pages/dashboard/DashboardMurid.jsx";
+import Login from "./pages/Login.jsx";
+
 function App() {
   return (
-    <body className="bg-[#EDF2FB] min-h-screen max-h-dvh">
-      <Dashboard />
-    </body>
+    <div className="bg-[#EDF2FB] min-h-screen max-h-dvh">
+      <Login />
+    </div>
   );
 }
 

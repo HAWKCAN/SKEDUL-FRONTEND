@@ -1,14 +1,17 @@
-import { Header, LeftSide, Card, ButtonType } from "../../components";
-// import { logout } from "../../api/auth";
-import { useState, useEffect } from "react";
+import { Header, CardList } from "../../components";
+import { useState, useEffect, useRef } from "react";
 
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setNama] = useState("");
 
-  // 🔹 data kelas dari API
   const [kelas, setKelas] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredKelas, setFilteredKelas] = useState([]);
 
+  const lastDataRef = useRef(null);
+
+  // Ambil nama user
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedName = localStorage.getItem("name");
@@ -16,11 +19,10 @@ export default function Dashboard() {
     if (storedName) setNama(storedName);
   }, []);
 
-  function loadKelas() {
+  // Fetch data kelas
+  const loadKelas = () => {
     const token = localStorage.getItem("token");
     const API = import.meta.env.VITE_API_URL + "/api";
-
-    console.log("TOKEN:", token);
 
     fetch(`${API}/mahasiswa/kelas`, {
       method: "GET",
@@ -32,112 +34,81 @@ export default function Dashboard() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("DATA KELAS:", data);
-        setKelas(data); // Pastikan ini array → card akan tampil
-      })
-      .catch((err) => console.error("Gagal load kelas:", err));
-  }
+        if (!Array.isArray(data)) {
+          console.warn("Data bukan array:", data);
+          setKelas([]); // biar tidak error
+          return;
+        }
 
-  // 🔹 auto refresh setiap 15 detik
+        if (JSON.stringify(data) !== JSON.stringify(lastDataRef.current)) {
+          lastDataRef.current = data;
+          setKelas(data);
+        }
+      });
+  };
+
+  // Polling (Realtime update)
   useEffect(() => {
-    const interval = setInterval(loadKelas, 1000);
+    loadKelas();
+    const interval = setInterval(loadKelas, 1500);
     return () => clearInterval(interval);
   }, []);
 
-  // function handleLogout() {
-  //   const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (!Array.isArray(kelas)) {
+      setFilteredKelas([]);
+      return;
+    }
 
-  //   logout(token)
-  //     .then(() => {
-  //       localStorage.clear();
-  //       window.location.href = "/login";
-  //     })
-  //     .catch(() => alert("Gagal logout!"));
-  // }
+    const q = searchQuery.toLowerCase();
+    const result = kelas.filter(
+      (item) =>
+        item.nama_kelas.toLowerCase().includes(q) ||
+        (item.kode_ruangan && item.kode_ruangan.toLowerCase().includes(q))
+    );
+
+    setFilteredKelas(result);
+  }, [searchQuery, kelas]);
+
+  // Filtering berdasarkan input search
+  useEffect(() => {
+    const q = searchQuery.toLowerCase();
+    const result = kelas.filter(
+      (item) =>
+        item.nama_kelas.toLowerCase().includes(q) ||
+        (item.kode_ruangan && item.kode_ruangan.toLowerCase().includes(q))
+    );
+    setFilteredKelas(result);
+  }, [searchQuery, kelas]);
 
   return (
     <div className="text-[#191c4d] bg-[#FFFFFF]">
       <div className="text-[#191c4d] lg:flex flex-col hidden bg-[#FFFFFF]">
         <div>
-          <Header className="relative" to="/" />
+          <Header to="/" onSearch={(value) => setSearchQuery(value)} />
+
           {isLoggedIn && (
             <div className="flex absolute flex-row justify-between top-7 right-50 items-center">
-              <h1 className="text-[20px]  mr-10 font-medium">
+              <h1 className="text-[20px] mr-10 font-medium">
                 Halo, {name || "kamu"}
               </h1>
             </div>
           )}
         </div>
 
-        <div className="grid  ">
-          <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_1fr_5fr] lg:mr-35 lg:ml-35   p-5">
-            <LeftSide />
-            <div className="border border-[#7d99fc] rounded-md lg:max-h[100px] bg-[#C5D8FF] grid grid-cols-[1fr_1fr_1fr] text-center text-[18px] p-5">
-              <div className="border-r pl-2 border-[#7d99fc]">
-                <p className="pb-3 font-bold">Peminjaman Pending</p>
-              </div>
-              <div className="border-r pl-5 border-[#7d99fc] font-bold">
-                <p>Peminjaman Diterima</p>
-              </div>
-              <div className="pl-5 font-bold">
-                <p>Peminjaman Ditolak</p>
-              </div>
-            </div>
-
-            <div
-              id="card"
-              className="grid grid-flow-row-dense grid-cols-3 gap-5 mt-10  mb-10"
-            >
-              {kelas.length > 0 ? (
-                kelas.map((item) => <Card key={item.id} data={item} />)
-              ) : (
-                <p>Loading data kelas...</p>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <div className="text-[#191c4d] flex flex-col lg:hidden bg-[#FFFFFF]">
-        <div>
-          <Header className="relative" to="/" />
-          {isLoggedIn && (
-            <div className="flex absolute flex-row top-4 right-15 items-center">
-              <h1 className="text-[10px] font-medium">
-                Halo, {name || "kamu"}
-              </h1>
-            </div>
-          )}
-        </div>
-
-        <div className="grid  w-dvw">
-          {/* BAGIAN KANAN DASHBOARD */}
-          <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_5fr] pl-2 pt-5 pr-5">
+        <div className="grid">
+          <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_1fr_5fr] lg:mr-35 lg:ml-35 p-5">
             <div className="border border-[#7d99fc] rounded-md bg-[#C5D8FF] grid grid-cols-[1fr_1fr_1fr] text-center text-[18px] p-5">
-              <div className="border-r pl-2 border-[#7d99fc]">
-                <p className="pb-3 font-bold">Peminjaman Pending</p>
+              <div className="border-r pl-2 border-[#7d99fc] font-bold">
+                Peminjaman Pending
               </div>
               <div className="border-r pl-5 border-[#7d99fc] font-bold">
-                <p>Peminjaman Diterima</p>
+                Peminjaman Diterima
               </div>
-              <div className="pl-5 font-bold">
-                <p>Peminjaman Ditolak</p>
-              </div>
+              <div className="pl-5 font-bold">Peminjaman Ditolak</div>
             </div>
 
-            {/* 🟦 CARD KELAS */}
-            <div
-              id="card"
-              className="grid lg:grid-cols-3 lg:grid-rows-3 gap-5 mt-10 mb-10"
-            >
-              {kelas.length > 0 ? (
-                kelas.map((item) => <Card key={item.id} data={item} />)
-              ) : (
-                <p>Loading data kelas...</p>
-              )}
-            </div>
+            <CardList kelas={filteredKelas} />
           </div>
         </div>
       </div>

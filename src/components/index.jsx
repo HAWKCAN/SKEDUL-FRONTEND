@@ -8,3 +8,4 @@ export { default as Tersedia } from "./Status/Tersedia.jsx";
 export { default as Penuh } from "./Status/Penuh.jsx";
 export { default as DetailButton } from "./button/DetailButton.jsx";
 export { default as Card } from "./card/Card.jsx";
+export { default as CardList } from "./card/CardList.jsx";

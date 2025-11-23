@@ -1,6 +1,7 @@
 import { Tersedia, Penuh, DetailButton, ButtonType } from "../../components";
+import React from "react";
 
-export default function Card({ data }) {
+export default React.memo(function Card({ data }) {
   const statusUI = data.status === "tersedia" ? <Tersedia /> : <Penuh />;
 
   return (
@@ -13,7 +14,6 @@ export default function Card({ data }) {
         <div>{statusUI}</div>
       </div>
 
-
       <div className="flex flex-col justify-end text-[20px]">
         <h3>
           {data.dipakai_oleh ? `User ID: ${data.dipakai_oleh}` : "Tidak ada"}
@@ -21,13 +21,11 @@ export default function Card({ data }) {
         <p>{data.jam_mulai ? `${data.jam_mulai} - ${data.jam_selesai}` : ""}</p>
       </div>
 
- 
       <div className="flex flex-row justify-between items-end">
         <DetailButton />
 
-      <ButtonType type='submit' Name='Reservasi' to="/Reservation"/>
-
+        <ButtonType type="submit" Name="Reservasi" to={`/Reservation/${data.id}`} />
       </div>
     </div>
   );
-}
+});

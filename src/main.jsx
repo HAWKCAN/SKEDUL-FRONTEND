@@ -7,28 +7,28 @@ import App from "./App.jsx";
 import Login from "./pages/Login.jsx";
 import DashboardAdmin from "./pages/dashboard/Dashboard.jsx";
 import Reservation from "./pages/Reservation.jsx";
-
+import Profile from "./pages/Profile.jsx";
 import Mhs_Reg from "./pages/Register/Mhs_Reg.jsx";
 import ProtectedRoute from "./components/ProtectedRoutes.jsx";
+import DashboardMurid from "./pages/dashboard/DashboardMurid.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/Reservation" element={<Reservation />} />
-        <Route path="/Mhs_Reg" element={<Mhs_Reg />} />
-        <Route
-          path="/DashboardAdmin"
-          element={
-            <ProtectedRoute>
-              <DashboardAdmin />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/login" element={<Login />} /> */
+      <Route path="/Mhs_Reg" element={<Mhs_Reg />} />
+      <Route path="/Profile" element={<Profile />} />
+      <Route path="/DashboardMurid" element={<DashboardMurid />} />
+      <Route path="/Reservation/:id" element={<Reservation />} />
+      <Route
+        path="/DashboardAdmin"
+        element={
+          <ProtectedRoute>
+            <DashboardAdmin />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  </BrowserRouter>
 );
