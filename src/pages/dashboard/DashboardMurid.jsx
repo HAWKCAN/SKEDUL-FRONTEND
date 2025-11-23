@@ -1,4 +1,5 @@
-import { Header, CardList } from "../../components";
+import { Header, CardList, ButtonType } from "../../components";
+import { logout } from "../../api/auth";
 import { useState, useEffect, useRef } from "react";
 
 export default function Dashboard() {
@@ -18,6 +19,22 @@ export default function Dashboard() {
     setIsLoggedIn(!!token);
     if (storedName) setNama(storedName);
   }, []);
+
+  function handleLogout() {
+    const token = localStorage.getItem("token");
+
+    logout(token)
+      .then(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("name");
+        window.location.href = "/login";
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Gagal logout!");
+      });
+  }
 
   // Fetch data kelas
   const loadKelas = () => {
@@ -92,6 +109,7 @@ export default function Dashboard() {
               <h1 className="text-[20px] mr-10 font-medium">
                 Halo, {name || "kamu"}
               </h1>
+              <ButtonType type="button" Name="Logout" onClick={handleLogout} />
             </div>
           )}
         </div>
