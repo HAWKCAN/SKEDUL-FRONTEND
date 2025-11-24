@@ -7,7 +7,18 @@ import { logout } from "../api/auth";
 export default function Header({ to, onSearch }) {
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setNama] = useState("");
   const navigate = useNavigate();
+
+  // Ambil nama user
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedName = localStorage.getItem("name");
+    setIsLoggedIn(!!token);
+    if (storedName) setNama(storedName);
+  }, []);
+
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -39,13 +50,22 @@ export default function Header({ to, onSearch }) {
         <SearchBar onChange={onSearch} />
 
         {isLoggedIn ? (
-          <button
-            onClick={handleProfileClick}
-            className="w-12 h-12 rounded-full bg-[#ABC4FF] hover:bg-[#7d99fc] flex items-center justify-center font-bold text-white text-lg"
-            title="Profil"
-          >
-            <span>👤</span>
-          </button>
+          <div>
+            <button
+              onClick={handleProfileClick}
+              className="w-12 h-12 rounded-full bg-[#ABC4FF] hover:bg-[#7d99fc] flex items-center justify-center font-bold text-white text-lg"
+              title="Profil"
+            >
+              <span>👤</span>
+            </button>
+
+            <div className="flex absolute flex-row justify-between top-7 right-50 items-center">
+              <h1 className="text-[20px] mr-10 font-medium">
+                Halo, {name || "kamu"}
+              </h1>
+              <ButtonType type="button" Name="Logout" onClick={handleLogout} />
+            </div>
+          </div>
         ) : (
           <ButtonType to="/login" Name="Login" />
         )}

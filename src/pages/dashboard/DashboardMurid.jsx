@@ -1,40 +1,13 @@
 import { Header, CardList, ButtonType } from "../../components";
-import { logout } from "../../api/auth";
+
 import { useState, useEffect, useRef } from "react";
 
 export default function Dashboard() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [name, setNama] = useState("");
-
   const [kelas, setKelas] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredKelas, setFilteredKelas] = useState([]);
 
   const lastDataRef = useRef(null);
-
-  // Ambil nama user
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const storedName = localStorage.getItem("name");
-    setIsLoggedIn(!!token);
-    if (storedName) setNama(storedName);
-  }, []);
-
-  function handleLogout() {
-    const token = localStorage.getItem("token");
-
-    logout(token)
-      .then(() => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("name");
-        window.location.href = "/login";
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Gagal logout!");
-      });
-  }
 
   // Fetch data kelas
   const loadKelas = () => {
@@ -99,20 +72,9 @@ export default function Dashboard() {
   }, [searchQuery, kelas]);
 
   return (
-    <div className="text-[#191c4d] bg-[#FFFFFF]">
-      <div className="text-[#191c4d] lg:flex flex-col hidden bg-[#FFFFFF]">
-        <div>
-          <Header to="/" onSearch={(value) => setSearchQuery(value)} />
-
-          {isLoggedIn && (
-            <div className="flex absolute flex-row justify-between top-7 right-50 items-center">
-              <h1 className="text-[20px] mr-10 font-medium">
-                Halo, {name || "kamu"}
-              </h1>
-              <ButtonType type="button" Name="Logout" onClick={handleLogout} />
-            </div>
-          )}
-        </div>
+    <div className="text-[#191c4d]  bg-[#FFFFFF]">
+      <div className="text-[#191c4d] relative lg:flex flex-col hidden bg-[#FFFFFF]">
+        <Header to="/DashboardMurid" onSearch={(value) => setSearchQuery(value)} />
 
         <div className="grid">
           <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_1fr_5fr] lg:mr-35 lg:ml-35 p-5">
@@ -127,6 +89,7 @@ export default function Dashboard() {
             </div>
 
             <CardList kelas={filteredKelas} />
+            <br />
           </div>
         </div>
       </div>
