@@ -168,7 +168,7 @@ export default function Dashboard() {
             <h1 className="font-bold text-[20px] text-center">
               Registrasi Dosen
             </h1>
-            <ButtonType type="button" Name="Daftar" />
+            <ButtonType type="button" Name="Daftar" to="/Dosen_Reg" />
           </div>
 
           <div className="border border-[#A2B8FF] rounded-md bg-[#FFFFFF] h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
