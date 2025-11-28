@@ -75,7 +75,6 @@ export default function Dashboard() {
     }
   }
 
-
   async function handleReject(id) {
     const token = localStorage.getItem("token");
     if (!token) return;
@@ -147,7 +146,6 @@ export default function Dashboard() {
     }
   }
 
-
   // hitung ringkasan
   const pendingCount = pending.length;
   const approvedCount = history.filter((r) => r.status === "approved").length;
@@ -193,10 +191,6 @@ export default function Dashboard() {
           ) : (
             <h1 className="mt-2 text-[36px] font-bold">Dashboard</h1>
           )}
-
-          {/* TODO: bisa diganti tanggal dinamis */}
-          <p className="text-[20px]">Sabtu, 14 November 2025</p>
-
           {/* RINGKASAN */}
           <div className="border-[#7d99fc] bg-[#C5D8FF] h-[12vh] border-solid border-1 rounded-md mt-3 mr-5">
             <table className="w-[100%] h-[70%] text-center text-[18px] mt-3">
@@ -218,7 +212,6 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
-
           {/* DAFTAR PENDING */}
           <h1 className="text-[20px] font-bold mt-5">Daftar Pending</h1>
           <div className="bg-[#F5F8FF] border border-[#a2beff] rounded-md mr-5 p-2">
@@ -280,7 +273,6 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
-
           {/* HISTORI */}
           <div className="bg-[#F5F8FF] border border-[#a2beff] rounded-md mt-5 mr-5">
             <h1 className="text-[18px] font-bold ml-2 mt-2">
@@ -334,14 +326,14 @@ export default function Dashboard() {
                 )}
               </tbody>
             </table>
-          </div> <br />
+          </div>{" "}
+          <br />
           <button
             onClick={resetHistory}
             className="bg-red-400 hover:bg-red-600 px-3 py-1 m-5 justify-center rounded text-white"
           >
             Reset History
           </button>
-
         </div>
       </div>
     </div>

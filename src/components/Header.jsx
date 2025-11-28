@@ -7,22 +7,15 @@ import { logout } from "../api/auth";
 export default function Header({ to, onSearch }) {
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [name, setNama] = useState("");
   const navigate = useNavigate();
 
-  // Ambil nama user
+  const [name, setNama] = useState("");
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedName = localStorage.getItem("name");
     setIsLoggedIn(!!token);
     if (storedName) setNama(storedName);
-  }, []);
-
-
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
   }, []);
 
   const handleProfileClick = () => {
@@ -59,10 +52,12 @@ export default function Header({ to, onSearch }) {
               <span>👤</span>
             </button>
 
-            <div className="flex absolute flex-row justify-between top-7 right-50 items-center">
-              <h1 className="text-[20px] mr-10 font-medium">
-                Halo, {name || "kamu"}
-              </h1>
+            <div className="flex absolute flex-row gap-20 justify-between top-7 right-50 items-center">
+              <div>
+                <h1 className="text-[20px] lg:block hidden font-medium">
+                  Halo, {name || "kamu"}
+                </h1>
+              </div>
               <ButtonType type="button" Name="Logout" onClick={handleLogout} />
             </div>
           </div>

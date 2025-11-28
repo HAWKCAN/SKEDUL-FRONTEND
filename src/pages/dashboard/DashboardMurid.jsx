@@ -1,5 +1,4 @@
-import { Header, CardList, ButtonType } from "../../components";
-
+import { Header, CardList } from "../../components";
 import { useState, useEffect, useRef } from "react";
 
 export default function Dashboard() {
@@ -7,12 +6,12 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredKelas, setFilteredKelas] = useState([]);
 
-  const lastDataRef = useRef(null);
+  const lastDataRef = useRef("[]");
+  const API = import.meta.env.VITE_API_URL + "/api";
 
-  // Fetch data kelas
   const loadKelas = () => {
     const token = localStorage.getItem("token");
-    const API = import.meta.env.VITE_API_URL + "/api";
+    if (!token) return;
 
     fetch(`${API}/mahasiswa/kelas`, {
       method: "GET",
@@ -24,72 +23,75 @@ export default function Dashboard() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (!Array.isArray(data)) {
-          console.warn("Data bukan array:", data);
-          setKelas([]); // biar tidak error
-          return;
-        }
+        if (!Array.isArray(data)) return;
 
-        if (JSON.stringify(data) !== JSON.stringify(lastDataRef.current)) {
-          lastDataRef.current = data;
+        const now = JSON.stringify(data);
+        if (now !== lastDataRef.current) {
+          lastDataRef.current = now;
           setKelas(data);
         }
-      });
+      })
+      .catch(() => {});
   };
 
-  // Polling (Realtime update)
+  // polling every 6 seconds (aman untuk HP)
   useEffect(() => {
     loadKelas();
-    const interval = setInterval(loadKelas, 1500);
+    const interval = setInterval(loadKelas, 6000);
     return () => clearInterval(interval);
   }, []);
 
+  // search filter
   useEffect(() => {
-    if (!Array.isArray(kelas)) {
-      setFilteredKelas([]);
-      return;
-    }
-
     const q = searchQuery.toLowerCase();
+
     const result = kelas.filter(
       (item) =>
         item.nama_kelas.toLowerCase().includes(q) ||
         (item.kode_ruangan && item.kode_ruangan.toLowerCase().includes(q))
     );
 
-    setFilteredKelas(result);
-  }, [searchQuery, kelas]);
-
-  // Filtering berdasarkan input search
-  useEffect(() => {
-    const q = searchQuery.toLowerCase();
-    const result = kelas.filter(
-      (item) =>
-        item.nama_kelas.toLowerCase().includes(q) ||
-        (item.kode_ruangan && item.kode_ruangan.toLowerCase().includes(q))
-    );
     setFilteredKelas(result);
   }, [searchQuery, kelas]);
 
   return (
-    <div className="text-[#191c4d]  bg-[#FFFFFF]">
-      <div className="text-[#191c4d] relative lg:flex flex-col hidden bg-[#FFFFFF]">
-        <Header to="/DashboardMurid" onSearch={(value) => setSearchQuery(value)} />
+    <div className="text-[#191c4d] bg-white">
+      <div className="lg:flex relative flex-col hidden">
+        <Header to="/DashboardMurid" onSearch={setSearchQuery} />
 
         <div className="grid">
-          <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_1fr_5fr] lg:mr-35 lg:ml-35 p-5">
-            <div className="border border-[#7d99fc] rounded-md bg-[#C5D8FF] grid grid-cols-[1fr_1fr_1fr] text-center text-[18px] p-5">
-              <div className="border-r pl-2 border-[#7d99fc] font-bold">
+          <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_1fr_5fr] lg:mx-35 p-5">
+            <div className="border border-[#7d99fc] rounded-md bg-[#C5D8FF] grid grid-cols-3 text-center text-[18px] p-5 font-bold">
+              <div className="border-r border-[#7d99fc]">
                 Peminjaman Pending
               </div>
-              <div className="border-r pl-5 border-[#7d99fc] font-bold">
+              <div className="border-r border-[#7d99fc]">
                 Peminjaman Diterima
               </div>
-              <div className="pl-5 font-bold">Peminjaman Ditolak</div>
+              <div>Peminjaman Ditolak</div>
             </div>
 
             <CardList kelas={filteredKelas} />
-            <br />
+          </div>
+        </div>
+      </div>
+
+      <div className="lg:flex flex-col lg:hidden">
+        <Header to="/DashboardMurid" onSearch={setSearchQuery} />
+
+        <div className="grid">
+          <div className="h-[calc(100dvh-100px)] grid grid-rows-[1fr_1fr_5fr] lg:mx-35 p-5">
+            <div className="border border-[#7d99fc] rounded-md bg-[#C5D8FF] grid grid-cols-3 text-center text-[18px] p-5 font-bold">
+              <div className="border-r border-[#7d99fc]">
+                Peminjaman Pending
+              </div>
+              <div className="border-r border-[#7d99fc]">
+                Peminjaman Diterima
+              </div>
+              <div>Peminjaman Ditolak</div>
+            </div>
+
+            <CardList kelas={filteredKelas} />
           </div>
         </div>
       </div>
