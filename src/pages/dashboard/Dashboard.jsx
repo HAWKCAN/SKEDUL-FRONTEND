@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [name, setNama] = useState("");
 
   const [pending, setPending] = useState([]);
   const [history, setHistory] = useState([]);
@@ -13,9 +12,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const storedName = localStorage.getItem("name");
+
     setIsLoggedIn(!!token);
-    if (storedName) setNama(storedName);
 
     if (token) {
       loadReservasi(token);
@@ -184,9 +182,6 @@ export default function Dashboard() {
           {isLoggedIn ? (
             <div className="flex flex-row justify-between items-center">
               <h1 className="mt-2 text-[36px] font-bold">Dashboard</h1>
-              <h1 className="text-[20px] mr-10 font-medium">
-                Halo, {name || "kamu"}
-              </h1>
             </div>
           ) : (
             <h1 className="mt-2 text-[36px] font-bold">Dashboard</h1>
