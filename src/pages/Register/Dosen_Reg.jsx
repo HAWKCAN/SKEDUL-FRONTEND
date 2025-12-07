@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ButtonType } from "../../components/index.jsx";
 import { register } from "../../api/auth.js";
@@ -9,18 +9,26 @@ export default function Mhs_Reg() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("dosen");
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await register({ name, email, password, role }, true);
+
       alert("User berhasil dibuat!");
-      Navigate('/login');
 
     } catch (err) {
-      alert("Gagal membuat user!");
+      const msg =
+        err.response?.data?.error ||
+        err.response?.data?.message ||
+        "Gagal membuat user!";
+
+      alert(msg);
       console.error(err);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit}>

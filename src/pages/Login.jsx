@@ -21,7 +21,7 @@ export default function Login() {
       localStorage.setItem("name", user.name);
 
       if (role === "admin") navigate("/DashboardAdmin");
-      else if (role === "dosen") navigate("/dosen/jadwal");
+      else if (role === "dosen") navigate("/DashboardDosen");
       else navigate("/DashboardMurid");
     } catch (err) {
       alert("Email atau password salah!");

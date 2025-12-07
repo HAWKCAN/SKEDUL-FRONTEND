@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ButtonType } from "../../components";
 import { register } from "../../api/auth.js";
@@ -9,18 +9,25 @@ export default function Mhs_Reg() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("mahasiswa");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await register({ name, email, password, role }, true);
-      alert("User berhasil dibuat!");
-      Navigate('/login');
 
-    } catch (err) {
-      alert("Gagal membuat user!");
-      console.error(err);
-    }
-  };
+ const handleSubmit = async (e) => {
+   e.preventDefault();
+   try {
+     await register({ name, email, password, role }, true);
+
+     alert("User berhasil dibuat!");
+
+   } catch (err) {
+     const msg =
+       err.response?.data?.error ||
+       err.response?.data?.message ||
+       "Gagal membuat user!";
+
+     alert(msg);
+     console.error(err);
+   }
+ };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -40,15 +47,13 @@ export default function Mhs_Reg() {
             <tbody>
               <tr>
                 <td>
-                  <label className="text-start">Nama</label>
+                  <label>Nama</label>
                 </td>
                 <td>
                   <input
                     type="text"
-                    name="name"
-                    id="name"
                     placeholder="Nama Lengkap"
-                    className="border-solid border-[1.5px] rounded-md p-2 m-2 w-[200px]"
+                    className="border border-[1.5px] rounded-md p-2 m-2 w-[200px]"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -57,15 +62,13 @@ export default function Mhs_Reg() {
 
               <tr>
                 <td>
-                  <label className="text-start">Email</label>
+                  <label>Email</label>
                 </td>
                 <td>
                   <input
                     type="email"
-                    name="email"
-                    id="email"
                     placeholder="Email"
-                    className="border-solid border-[1.5px] rounded-md p-2 m-2 w-[200px]"
+                    className="border border-[1.5px] rounded-md p-2 m-2 w-[200px]"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -74,15 +77,13 @@ export default function Mhs_Reg() {
 
               <tr>
                 <td>
-                  <label className="text-start">Password</label>
+                  <label>Password</label>
                 </td>
                 <td>
                   <input
                     type="password"
-                    name="password"
-                    id="password"
                     placeholder="Password"
-                    className="border-solid border-[1.5px] rounded-md p-2 m-2 w-[200px]"
+                    className="border border-[1.5px] rounded-md p-2 m-2 w-[200px]"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -91,13 +92,13 @@ export default function Mhs_Reg() {
 
               <tr>
                 <td>
-                  <label className="text-start">Role</label>
+                  <label>Role</label>
                 </td>
                 <td>
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="border-solid border-[1.5px] rounded-md p-2 m-2 w-[200px]"
+                    className="border border-[1.5px] rounded-md p-2 m-2 w-[200px]"
                   >
                     <option value="mahasiswa">Mahasiswa</option>
                     <option value="dosen">Dosen</option>

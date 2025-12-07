@@ -3,11 +3,19 @@ import client from "./client";
 export const login = (email, password) =>
   client.post("/login", { email, password });
 
-// untuk admin membuat akun baru (hanya email, password, role)
-export const register = (data, isAdmin = false) =>
-  isAdmin
-    ? client.post("/admin/register", data)
-    : client.post("/register", data);
+export const register = async (data, isAdmin = false) => {
+  const token = localStorage.getItem("token");
 
+  if (isAdmin) {
+    return client.post("/admin/register", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+    });
+  }
+
+  return client.post("/register", data);
+};
 
 export const logout = () => client.post("/logout");
