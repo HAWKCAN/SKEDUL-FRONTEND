@@ -10,6 +10,8 @@ export default function Dashboard() {
 
   const API = import.meta.env.VITE_API_URL + "/api";
 
+  
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -169,6 +171,13 @@ export default function Dashboard() {
               Registrasi Dosen
             </h1>
             <ButtonType type="button" Name="Daftar" to="/Dosen_Reg" />
+          </div>
+
+          <div className="border border-[#A2B8FF] rounded-md bg-[#DCE8FF] h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">
+            <h1 className="font-bold text-[20px] text-center">
+              Tambah Jadwal
+            </h1>
+            <ButtonType type="button" Name="ISI" to="/Isi_Jadwal" />
           </div>
 
           <div className="border border-[#A2B8FF] rounded-md bg-[#FFFFFF] h-[140px] w-auto m-5 p-5 flex flex-col justify-center items-center gap-5">

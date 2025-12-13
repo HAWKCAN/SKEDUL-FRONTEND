@@ -14,6 +14,27 @@ export default function Dashboard() {
   const [pendingCount, setPendingCount] = useState(0);
   const [approvedCount, setApprovedCount] = useState(0);
   const [rejectedCount, setRejectedCount] = useState(0);
+  const getTodayName = () => {
+    return new Intl.DateTimeFormat("id-ID", { weekday: "long" }).format(
+      new Date()
+    );
+  };
+
+  const isNowInRange = (mulai, selesai) => {
+    const now = new Date();
+
+    const [mh, mm] = mulai.split(":");
+    const [sh, sm] = selesai.split(":");
+
+    const start = new Date();
+    start.setHours(mh, mm, 0);
+
+    const end = new Date();
+    end.setHours(sh, sm, 0);
+
+    return now >= start && now <= end;
+  };
+
 
   // Hitung status reservasi
   const hitungStatus = (data) => {
@@ -40,26 +61,38 @@ export default function Dashboard() {
       .catch(() => {});
   };
 
-  // FETCH KELAS (card kelas)
-  const loadKelas = () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+ const loadKelas = () => {
+   const token = localStorage.getItem("token");
+   if (!token) return;
 
-    fetch(`${API}/mahasiswa/kelas`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!Array.isArray(data)) return;
+   fetch(`${API}/mahasiswa/kelas`, {
+     headers: { Authorization: `Bearer ${token}` },
+   })
+     .then((res) => res.json())
+     .then((data) => {
+       if (!Array.isArray(data)) return;
 
-        const now = JSON.stringify(data);
-        if (now !== lastKelasRef.current) {
-          lastKelasRef.current = now;
-          setKelas(data);
-        }
-      })
-      .catch(() => {});
-  };
+       const today = getTodayName();
+
+       const realtimeKelas = data.filter((kelas) => {
+         // kalau kelas belum punya jadwal → tetap tampil
+         if (!kelas.jadwal || kelas.jadwal.length === 0) return true;
+
+         // cek apakah ADA jadwal yang aktif SEKARANG
+         return kelas.jadwal.some(
+           (j) => j.hari === today && isNowInRange(j.jam_mulai, j.jam_selesai)
+         );
+       });
+
+       const now = JSON.stringify(realtimeKelas);
+       if (now !== lastKelasRef.current) {
+         lastKelasRef.current = now;
+         setKelas(realtimeKelas);
+       }
+     })
+     .catch(() => {});
+ };
+
 
   // Polling keduanya
   useEffect(() => {
@@ -90,6 +123,14 @@ export default function Dashboard() {
     <div className="text-[#191c4d] bg-white">
       <div className="lg:flex relative flex-col hidden">
         <Header to="/DashboardMurid" onSearch={setSearchQuery} />
+        <div className="flex top-8 left-[500px] absolute">
+          <button
+            onClick={() => (window.location.href = "/ReservasiSaya")}
+            className="py-2 px-4 bg-[#414dea] hover:bg-[#5e74f6] text-white font-bold rounded-lg"
+          >
+            Lihat Reservasi Saya
+          </button>
+        </div>
 
         <div className="grid">
           <div className="h-[calc(100dvh-100px)] grid grid-rows-[auto_auto_1fr] p-5">

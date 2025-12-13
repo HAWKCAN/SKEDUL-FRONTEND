@@ -34,13 +34,15 @@ export default function Header({ to, onSearch }) {
 
   return (
     <div>
-      <header className="shadow-md lg:flex flex-row hidden max-h-[100px] p-10 lg:pl-20 border-b border-[#7d99fc] lg:pr-20 bg-[#EDF4FF] justify-between  items-center text-center">
+      <header className="shadow-md lg:flex flex-row hidden max-h-[100px] p-10 lg:pl-20 border-b border-[#7d99fc] lg:pr-30 bg-[#EDF4FF] justify-between  items-center text-center">
         <Link to={to}>
           <span className="content-center font-bold text-[30px] cursor-pointer">
             SKEDUL
           </span>
         </Link>
+
         <SearchBar onChange={onSearch} />
+       
 
         {isLoggedIn ? (
           <div>

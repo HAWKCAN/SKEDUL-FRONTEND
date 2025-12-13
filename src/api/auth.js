@@ -18,4 +18,16 @@ export const register = async (data, isAdmin = false) => {
   return client.post("/register", data);
 };
 
+export const getDosen = () => {
+  return client.get("/admin/jadwal-kelas/dosen");
+};
+
+export const getKelas = () => {
+  return client.get("/admin/jadwal-kelas/kelas");
+};
+
+export const tambahJadwal = (data) => {
+  return client.post("/admin/jadwal-kelas", data);
+};
+
 export const logout = () => client.post("/logout");

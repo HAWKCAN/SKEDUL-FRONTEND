@@ -37,8 +37,8 @@ export default function Reservation() {
 
   // Load availability slot dari backend
   const loadAvailability = async () => {
-    if (!hari) {
-      alert("Pilih hari dulu");
+    if (!hari || !tanggal) {
+      alert("Pilih hari dan tanggal dulu");
       return;
     }
 
@@ -48,21 +48,25 @@ export default function Reservation() {
     const API = import.meta.env.VITE_API_URL + "/api";
 
     try {
-      const res = await fetch(`${API}/kelas/${id}/availability?hari=${hari}`, {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        `${API}/mahasiswa/kelas/${id}/availability?hari=${hari}&tanggal=${tanggal}`,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await res.json();
       setAvailability(data.slots || []);
     } catch (err) {
-      console.error("Error:", err);
+      console.error(err);
     }
 
     setLoadingAvail(false);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,7 +85,7 @@ export default function Reservation() {
     };
 
     try {
-      const res = await fetch(`${API}/reservasi`, {
+      const res = await fetch(`${API}/mahasiswa/reservasi`, {
         method: "POST",
         credentials: "include",
         headers: {
